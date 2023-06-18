@@ -441,22 +441,6 @@ radio_start:            %empty
                         flag_radio_button =1;
                         };   
 
-/* radio_end:              %empty
-                        {
-                        flag_radio_button =0;
-                        check_values();
-                        check_radio_group_child_count(child_count_rge);
-                        // int i;
-                        // for(i=0;i<3;i++){
-                        //     printf("\n  Checked Button value:\n %s",used_checkb[i]);
-                        // }
-                        
-                        // for(i=0;i<3;i++){
-                        //     printf("\n  Radio Button id value:\n %s",check_radiob[i]);
-                        // } 
-                        };   
-                                                                                          */
-
 
 radio_end:          %empty
                         {
@@ -482,19 +466,6 @@ radiogroupattributes:    layout_width layout_height
                         | layout_width layout_height text android_id checkedButton radiobutton
                         | layout_width layout_height text android_id checkedButton radio_group_element radiobutton 
                         ;
-
-
-///////////////////
-
-/* radio_group_element:             T_RADIO_BUTTON_CHILD_COUNT T_POSITIVE_INTEGER
-                                {
-
-                                    child_count_rge = atoi($2);
-                                    printf(" GGGGGGGGGGGGGGGGG %s = %d\n", $1, child_count_rge);
-                                  
-                                }
-                                ; */
-
 
 
 radio_group_element:        T_RADIO_BUTTON_CHILD_COUNT T_POSITIVE_INTEGER
@@ -664,19 +635,6 @@ void addUsedIdInt(int id) {
 void increment_child_count() {
     child_count++;
 }
-
-/* // Function to check the number of children for <RadioGroup> 
-void check_radio_group_child_count(int expected_count) {
-    if (child_count != expected_count) {
-        char error_message[100];
-        sprintf(error_message, "Invalid number of children. Expected %d children for <RadioGroup>.", expected_count);
-        yyerror(error_message);
-    }else{
-        printf("The number of children is correct!\n\n");
-    }
-    // Reset child count for the next <RadioGroup>
-    child_count = 0;
-} */
 
 void check_radio_group_child_count(int expected_count, int cumulative_count) {
     if (cumulative_count != expected_count) {
